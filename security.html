@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<!--
+JavaScript 6th Edition
+Chapter 1
+Individual Case Project
+ 
+Author:Rafael Martinez
+Date:3/18/2018
+ 
+Filename: subscription.html
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="keywords" content="Rafael" />
+    <meta name="description" content="description" />
+    <link href="default.css" rel="stylesheet" type="text/css" media="all" />
+	<title>Rafaels Site</title>
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+  <script src="modernizr.custom.05819.js"></script>
+  
+  	<script>
+var map, infoWindow;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 6
+  });
+  infoWindow = new google.maps.InfoWindow;
+
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('Location found.');
+      infoWindow.open(map);
+      map.setCenter(pos);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+  infoWindow.open(map);
+}
+	</script>
+	
+	 <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgUCHkKhEZ88LJ0Bg4C1xBp3U2VsTZrKI&callback=initMap">
+	</script>
+	
+</head>
+
+<body>
+    <div id="header-wrapper">
+        <div id="header" class="container">
+            <div id="logo">
+                <h1><a href="#">Blue Genie</a></h1>
+            </div>
+            <div id="menu">
+                <ul>
+                    <li><a href="bluegenie.html" title="">Homepage</a></li>
+                    <li><a href="calendar.html" title="">Calendar</a></li>
+                    <li><a href="find.html" title="">Find Wish List</a></li>
+                    <li><a href="subscription.html" title="">Subscription Ideas</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--The div element for the map -->
+<div id="map"></div>
+    <div class="wrapper">
+        <div id="welcome" class="container">
+
+            <div class="title">
+                <h2>Web Security</h2>
+            </div>
+
+
+
+
+            <h3>Here's an example of information that is readily available from your web browser:</h3>			
+			<p class="web-report"></p>
+			<p class="web-report"></p>
+			<p class="web-report"></p>
+			<p class="web-report"></p>
+			<p class="web-report"></p>
+			<p class="web-report"></p>		
+        </div>
+		</section>
+		
+<!-- 
+Area for Subscription gift ideas. Such as Glossybox or lootcrate. 
+-->			
+		
+        <div id="three-column" class="container">
+            <div id="tbox1">
+                <div class="title">
+                    <h2>Mozilla Web Security</h2>
+                </div>
+                <p>"Ensuring that your website or open web application is secure is critical. Even simple bugs in your code can result in private information being leaked, and bad people are out there trying to find ways to steal data." </p>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/Security" class="button">Learn More</a> </div>
+            <div id="tbox2">
+                <div class="title">
+                    <h2>OWASP Security</h2>
+                </div>
+                <p>Would you like to have unbiased source of information on best practices as well as an active body advocating open standard?</p>
+                <a href="https://www.owasp.org/index.php/Main_Page" class="button">Learn More</a> </div>
+            <div id="tbox3">
+                <div class="title">
+                    <h2>IP Vanish VPN</h2>
+                </div>
+                <p>Putting personal information at risk is the price you pay when using free Wi-Fi. Keep your data under lock and key with our encryption, and keep hackers, ISPs, and tech-savvy teens out of your connection.</p>
+                <a href="https://www.ipvanish.com/" class="button">Learn More</a> </div>
+        </div>
+
+    </div>
+    <div id="footer">
+
+        <div id="copyright">
+
+            <p>Rafael Martinez. | Arizona State University | GIT 417: Adv Web Markup and Scripting</p>
+        </div>
+    </div>
+<script>
+		//strict mode for error-checking
+		"use strict";
+		//display information to users about their device
+		document.getElementsByClassName("web-report") [0].innerHTML =
+			"Your operating system:" + navigator.platform;
+		document.getElementsByClassName("web-report") [1].innerHTML = 
+			"Your browser information:" + navigator.userAgent;	
+		document.getElementsByClassName("web-report") [2].innerHTML = 
+			"Your browser type: " + navigator.appName;
+		document.getElementsByClassName("web-report") [3].innerHTML = 
+			"Your screen color resolution:" + screen.pixelDepth;
+		document.getElementsByClassName("web-report") [4].innerHTML = 
+			"Your screen height: " + screen.height;
+		document.getElementsByClassName("web-report") [5].innerHTML = 
+			"Your screen width:" + screen.width;
+</script>	
+ 
+
+</body>
+
+</html>	
+	
