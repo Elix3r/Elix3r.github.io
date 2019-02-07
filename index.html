@@ -27,13 +27,7 @@ Filename: subscription.html
   
   	<script>
 var map, infoWindow;
-    var longitude = position.coords.longitude;
-    var latitude = position.coords.latitude;
-    var altitude = position.coords.altitude;
 
-    document.getElementById("latitudeid").innerHTML += latitude;
-    document.getElementById("longitudeid").innerHTML += longitude;
-    document.getElementById("altitudeid").innerHTML += altitude;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, lng: 150.644},
@@ -60,8 +54,17 @@ function initMap() {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
+     var longitude = position.coords.longitude;
+    var latitude = position.coords.latitude;
+    var altitude = position.coords.altitude;
+
+    document.getElementById("latitudeid").innerHTML += latitude;
+    document.getElementById("longitudeid").innerHTML += longitude;
+    document.getElementById("altitudeid").innerHTML += altitude;
 }
 
+
+	
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(browserHasGeolocation ?
