@@ -25,54 +25,7 @@ Filename: subscription.html
   <![endif]-->
   <script src="modernizr.custom.05819.js"></script>
   
-  	<script>
-var map, infoWindow;
 
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 6
-  });
-  infoWindow = new google.maps.InfoWindow;
-
-  // Try HTML5 geolocation.
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-
-      infoWindow.setPosition(pos);
-      infoWindow.setContent('Location found.');
-      infoWindow.open(map);
-      map.setCenter(pos);
-    }, function() {
-      handleLocationError(true, infoWindow, map.getCenter());
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
-  }
-     var longitude = position.coords.longitude;
-    var latitude = position.coords.latitude;
-    var altitude = position.coords.altitude;
-
-    document.getElementById("latitudeid").innerHTML += latitude;
-    document.getElementById("longitudeid").innerHTML += longitude;
-    document.getElementById("altitudeid").innerHTML += altitude;
-}
-
-
-	
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-                        'Error: The Geolocation service failed.' :
-                        'Error: Your browser doesn\'t support geolocation.');
-  infoWindow.open(map);
-}
-	</script>
 	
 	 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgUCHkKhEZ88LJ0Bg4C1xBp3U2VsTZrKI&callback=initMap">
@@ -175,7 +128,54 @@ Area for Subscription gift ideas. Such as Glossybox or lootcrate.
 		document.getElementsByClassName("web-report") [5].innerHTML = 
 			"Your screen width:" + screen.width;
 </script>	
- 
+   	<script>
+var map, infoWindow;
+ var longitude = position.coords.longitude;
+    var latitude = position.coords.latitude;
+    var altitude = position.coords.altitude;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 6
+  });
+  infoWindow = new google.maps.InfoWindow;
+
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('Location found.');
+      infoWindow.open(map);
+      map.setCenter(pos);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
+    
+}
+
+
+    document.getElementById("latitudeid").innerHTML += latitude;
+    document.getElementById("longitudeid").innerHTML += longitude;
+    document.getElementById("altitudeid").innerHTML += altitude;
+
+	
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+  infoWindow.open(map);
+}
+	</script>
 
 </body>
 
