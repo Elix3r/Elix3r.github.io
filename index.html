@@ -18,12 +18,12 @@ Filename: subscription.html
     <meta charset="utf-8">
     <meta name="keywords" content="Rafael" />
     <meta name="description" content="description" />
-    <link href="/default.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="default.css" rel="stylesheet" type="text/css" media="all" />
 	<title>Rafaels Site</title>
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
-  <script src="/modernizr.custom.05819.js"></script>
+  <script src="modernizr.custom.05819.js"></script>
  
   	<script>
 	"use strict";
@@ -47,7 +47,7 @@ function showPosition(position) {
     mapTypeId:google.maps.MapTypeId.ROADMAP,
     mapTypeControl:false,
     navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
-  }
+  };
     
   var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
   var marker = new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
