@@ -130,9 +130,7 @@ Area for Subscription gift ideas. Such as Glossybox or lootcrate.
 </script>	
    	<script>
 var map, infoWindow;
- var longitude = position.coords.longitude;
-    var latitude = position.coords.latitude;
-    var altitude = position.coords.altitude;
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, lng: 150.644},
@@ -146,6 +144,7 @@ function initMap() {
       var pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
+		alti: position.coords.altitude;
       };
 
       infoWindow.setPosition(pos);
@@ -159,11 +158,16 @@ function initMap() {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
-    
+document.getElementById("lat").innerHTML = "Latitude: <b>" + lat + "</b><br/>";
+document.getElementById("lon").innerHTML = "Longitude: <b>" + lon + "</b><br/>"; 
+document.getElementById("alti").innerHTML += altitude;
 }
 
 
-    document.getElementById("latitudeid").innerHTML += latitude;
+    var longitude = positon.coords.longitude;
+    var latitude = position.coords.latitude;
+    var altitude = position.coords.altitude;
+	document.getElementById("latitudeid").innerHTML += latitude;
     document.getElementById("longitudeid").innerHTML += longitude;
     document.getElementById("altitudeid").innerHTML += altitude;
 
@@ -180,4 +184,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 </body>
 
 </html>	
+
+
 	
