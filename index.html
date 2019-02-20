@@ -1,158 +1,150 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-   <!--
-      JavaScript 6th Edition
-      Chapter 10 Individual Case Project
-       
-      Author:Rafael Martinez
-      Date:2/8/2018
-       
-      Filename: Index.html
-      -->
    <head>
+
       <meta charset="utf-8">
-      <meta name="keywords" content="Rafael" />
+      <meta name="keywords" content="Blue Ocean" />
       <meta name="description" content="description" />
-      <link href="default.css" rel="stylesheet" type="text/css" media="all" />
-      <title>Rafaels Site</title>
-      <!--[if lt IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-      <![endif]-->
+      <link href="https://elix3r.github.io/default.css" rel="stylesheet" type="text/css" media="all" />
+      <!--[if lt IE 9]> <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script> <![endif]-->
+      <title>Website</title>
       <script src="modernizr.custom.05819.js"></script>
-      <!--BEGINNING OF SCRIPT CH 10 -->
-      <script>
-         "use strict";
-          //function that allows browser to get geolocation 
-         function getLocation() {
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-          } 
-         }
-          //function that allows map to get position
-         function showPosition(position) {
-          var lat = position.coords.latitude;
-          var lon = position.coords.longitude;
-          var alt = position.coords.altitude;
-          var latlon = new google.maps.LatLng(lat, lon);
-          var mapholder = document.getElementById('mapholder');
-         
-          //customizes  map object visually 
-          var myOptions = {
-            center:latlon,zoom:14,
-            mapTypeId:google.maps.MapTypeId.ROADMAP,
-            mapTypeControl:false,
-            navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
-          };
-              //function that gathers values of latitude, longitude, and altitude 
-          var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
-          var marker = new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
-            //Attaches latitude, longitude and altitude values into html
-          document.getElementById("latitudeid").innerHTML += lat;
-          document.getElementById("longitudeid").innerHTML += lon;
-          document.getElementById("altitudeid").innerHTML += alt;
-         }
-         
-         
-         //Event listener to activate functions above
-         if (window.addEventListener) {
-         
-         
-         window.addEventListener("load", getLocation, false);
-         
-         } else if (window.attachEvent) {
-         
-         
-         window.attachEvent("onload", getLocation);
-         
-         }
-         
-      </script>
-      <!--END OF SCRIPT CH 10 -->
-      <!--This script is for the API for a dummy account I created -->
-      <script async defer
-         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgUCHkKhEZ88LJ0Bg4C1xBp3U2VsTZrKI"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <!--BEGINING OF SCRIPT FOR CHAPTER 8 CASE PROJECT-->
+  <script>
+"use strict";
+
+var website = [];
+
+
+function logWebsite(event) {
+	// This will get the caller element in Internet Explorer version 8
+	if (event === undefined) {
+		event = window.event;
+	}
+	var callerElement = event.target || event.srcElement;
+	var websiteName = callerElement.value;
+	
+	// If checkbox has just been checked
+	if (callerElement.checked) {
+		// This will add checkbox value to the array
+		website.push(websiteName);
+
+		// This will add checkbox value to list in choices box
+		var newWebsite = document.createElement("li");
+		newWebsite.innerHTML = websiteName;
+		document.getElementById("choicesWebsites").appendChild(newWebsite);
+
+	} else {
+		var listItems = document.querySelectorAll("#choicesWebsites li");
+		for (var i = 0; i < listItems.length; i++) {
+			if (listItems[i].innerHTML === websiteName) {
+				// This will remove your choices from the website list if deselected
+				website.splice(i, 1);
+				listItems[i].parentNode.removeChild(listItems[i]);				 
+				//I added the same string conversion so that it will apply to items removed aswell.
+				break;
+			}
+		}
+
+	}
+}
+
+
+//This will allow the functions to be called whenever an event occurs
+function createEventListeners() {
+	var websites = document.getElementsByName("websites");
+	if (websites[0].addEventListener) {
+		for (var i = 0; i < websites.length; i++) {
+			websites[i].addEventListener("change", logWebsite, false);
+		}
+	} else if (websites[0].attachEvent) {
+		for (var i = 0; i < websites.length; i++) {
+			websites[i].attachEvent("onchange", logWebsite);
+		}
+	}
+}
+
+if (window.addEventListener) {
+	window.addEventListener("load", createEventListeners, false);
+} else if (window.attachEvent) {
+	window.attachEvent("onload", createEventListeners);
+}
+  </script>	  
+      <!--END OF SCRIPT FOR CHAPTER 8 CASE PROJECT-->
    </head>
    <body>
       <div id="header-wrapper">
          <div id="header" class="container">
             <div id="logo">
-               <h1><a href="#">Blue Genie</a></h1>
+               <h1><a href="#">Blue Ocean</a></h1>
             </div>
             <div id="menu">
                <ul>
-                  <li><a href="bluegenie.html" title="">Homepage</a></li>
+                  <li><a href="BlueOcean.html" title="">Homepage</a></li>
                   <li><a href="calendar.html" title="">Calendar</a></li>
-                  <li><a href="find.html" title="">Find Wish List</a></li>
-                  <li><a href="subscription.html" title="">Subscription Ideas</a></li>
+                  <li><a href="Wish.html" title="">Wish List</a></li>
+                  <li class="active"><a href="subscription.html" title="">Subscription</a></li>
                </ul>
             </div>
          </div>
       </div>
-      <!--The div element for the map -->
-      <div id="mapholder"></div>
       <div class="wrapper">
          <div id="welcome" class="container">
             <div class="title">
-               <h2>Web Security</h2>
+               <h2>Popular subscription sites</h2>
             </div>
-            <h3>Here's an example of information that is readily available from your web browser:</h3>
-            <!--The div element for values of latitude, longitude and altitude -->
-            <div class="LLAoutput">
-               <p id="latitudeid">Your Latitude: </p>
-               <p id="longitudeid">Your Longitude: </p>
-               <p id="altitudeid">Your Altitude: </p>
-            </div>
-            <p class="web-report"></p>
-            <p class="web-report"></p>
-            <p class="web-report"></p>
-            <p class="web-report"></p>
-         </div>
-         
-         <!-- 
-            Area for Subscription gift ideas. Such as Glossybox or lootcrate. 
-            -->			
+            <p>Here is a list of popular subscription sites</p>
+         </div>		
          <div id="three-column" class="container">
             <div id="tbox1">
                <div class="title">
-                  <h2>Mozilla Web Security</h2>
+                  <h2>Online Shopping Poll</h2>
                </div>
-               <p>"Ensuring that your website or open web application is secure is critical. Even simple bugs in your code can result in private information being leaked, and bad people are out there trying to find ways to steal data." </p>
-               <a href="https://developer.mozilla.org/en-US/docs/Web/Security" class="button">Learn More</a> 
+<!-- This is the form that contains the checkboxes and sites used for the script functions.-->		
+               <form>
+                  <fieldset class="checks">
+                     <legend><span>Which of these sites do you shop from? </span></legend>
+                     <input type="checkbox" id="amazon" value="Amazon.com" name="websites" />
+                     <label for="amazon" id="amazonLabel">Amazon.com</label>
+                     <input type="checkbox" id="newegg" value="Newegg.com" name="websites" />
+                     <label for="newegg" id="neweggLabel">Newegg.com</label>
+                     <input type="checkbox" id="etsy" value="Etsy.com" name="websites" />
+                     <label for="etsy" id="etsyLabel">Etsy.com</label>
+                     <input type="checkbox" id="walmart" value="Walmart.com" name="websites" />
+                     <label for="walmart" id="walmartLabel">Walmart.com</label>
+                     <input type="checkbox" id="bestbuy" value="Bestbuy.com" name="websites" />
+                     <label for="bestbuy" id="bestbuyLabel">Bestbuy.com</label>
+                     <input type="checkbox" id="sephora" value="Sephora.com" name="websites" />
+                     <label for="sephora" id="sephoraLabel">Sephora.com</label>
+                  </fieldset>
+                  <input type="button" id="submitBtn" class="button" value="Submit" />
+               </form>
             </div>
             <div id="tbox2">
-               <div class="title">
-                  <h2>OWASP Security</h2>
-               </div>
-               <p>Would you like to have unbiased source of information on best practices as well as an active body advocating open standard?</p>
-               <a href="https://www.owasp.org/index.php/Main_Page" class="button">Learn More</a> 
+<!-- This is the section that will display the selected websites-->	
+               <section id="choices">
+                  <div class="title">
+                     <h2>Selected Choices</h2>
+                  </div>
+                  <div id="websitesSection">
+                     <ul id="choicesWebsites"></ul>
+                  </div>
+               </section>
             </div>
             <div id="tbox3">
                <div class="title">
-                  <h2>IP Vanish VPN</h2>
+                  <h2>Paragraph 3</h2>
                </div>
-               <p>Putting personal information at risk is the price you pay when using free Wi-Fi. Keep your data under lock and key with our encryption, and keep hackers, ISPs, and tech-savvy teens out of your connection.</p>
-               <a href="https://www.ipvanish.com/" class="button">Learn More</a> 
+               <p>Donec mattis libero eget urna. Duis pretium velit ac mauris. Proin eu wisi suscipit nulla suscipit interdum. Nullam non wisi a sem suscipit eleifend.</p>
+               <a href="#" class="button">Button 3</a> 
             </div>
          </div>
       </div>
       <div id="footer">
          <div id="copyright">
-            <p>Rafael Martinez. | Arizona State University | GIT 418: Adv Web Markup and Scripting</p>
+            <p>JavaScript 6th Edition Sasha Vodnik - GIT </p>
          </div>
       </div>
-      <script>
-         //strict mode for error-checking
-         "use strict";
-         //display information to users about their device
-         
-         document.getElementsByClassName("web-report") [0].innerHTML = 
-         	"Your browser information:" + navigator.userAgent;	
-         document.getElementsByClassName("web-report") [1].innerHTML = 
-         	"Your screen color resolution:" + screen.pixelDepth;
-         document.getElementsByClassName("web-report") [2].innerHTML = 
-         	"Your screen height: " + screen.height;
-         document.getElementsByClassName("web-report") [3].innerHTML = 
-         	"Your screen width:" + screen.width;
-      </script>	
    </body>
 </html>
