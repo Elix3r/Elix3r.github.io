@@ -9,69 +9,7 @@
       <!--[if lt IE 9]> <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script> <![endif]-->
       <title>Website</title>
       <script src="modernizr.custom.05819.js"></script>
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <!--BEGINING OF SCRIPT FOR CHAPTER 8 CASE PROJECT-->
-  <script>
-"use strict";
-
-var website = [];
-
-
-function logWebsite(event) {
-	// This will get the caller element in Internet Explorer version 8
-	if (event === undefined) {
-		event = window.event;
-	}
-	var callerElement = event.target || event.srcElement;
-	var websiteName = callerElement.value;
-	
-	// If checkbox has just been checked
-	if (callerElement.checked) {
-		// This will add checkbox value to the array
-		website.push(websiteName);
-
-		// This will add checkbox value to list in choices box
-		var newWebsite = document.createElement("li");
-		newWebsite.innerHTML = websiteName;
-		document.getElementById("choicesWebsites").appendChild(newWebsite);
-
-	} else {
-		var listItems = document.querySelectorAll("#choicesWebsites li");
-		for (var i = 0; i < listItems.length; i++) {
-			if (listItems[i].innerHTML === websiteName) {
-				// This will remove your choices from the website list if deselected
-				website.splice(i, 1);
-				listItems[i].parentNode.removeChild(listItems[i]);				 
-				//I added the same string conversion so that it will apply to items removed aswell.
-				break;
-			}
-		}
-
-	}
-}
-
-
-//This will allow the functions to be called whenever an event occurs
-function createEventListeners() {
-	var websites = document.getElementsByName("websites");
-	if (websites[0].addEventListener) {
-		for (var i = 0; i < websites.length; i++) {
-			websites[i].addEventListener("change", logWebsite, false);
-		}
-	} else if (websites[0].attachEvent) {
-		for (var i = 0; i < websites.length; i++) {
-			websites[i].attachEvent("onchange", logWebsite);
-		}
-	}
-}
-
-if (window.addEventListener) {
-	window.addEventListener("load", createEventListeners, false);
-} else if (window.attachEvent) {
-	window.attachEvent("onload", createEventListeners);
-}
-  </script>	  
-      <!--END OF SCRIPT FOR CHAPTER 8 CASE PROJECT-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    </head>
    <body>
       <div id="header-wrapper">
@@ -95,13 +33,13 @@ if (window.addEventListener) {
                <h2>Popular subscription sites</h2>
             </div>
             <p>Here is a list of popular subscription sites</p>
-         </div>		
+         </div>     
          <div id="three-column" class="container">
             <div id="tbox1">
                <div class="title">
                   <h2>Online Shopping Poll</h2>
                </div>
-<!-- This is the form that contains the checkboxes and sites used for the script functions.-->		
+<!-- This is the form that contains the checkboxes and sites used for the script functions.-->      
                <form>
                   <fieldset class="checks">
                      <legend><span>Which of these sites do you shop from? </span></legend>
@@ -122,7 +60,7 @@ if (window.addEventListener) {
                </form>
             </div>
             <div id="tbox2">
-<!-- This is the section that will display the selected websites-->	
+<!-- This is the section that will display the selected websites--> 
                <section id="choices">
                   <div class="title">
                      <h2>Selected Choices</h2>
@@ -146,5 +84,55 @@ if (window.addEventListener) {
             <p>JavaScript 6th Edition Sasha Vodnik - GIT </p>
          </div>
       </div>
+
+
+      <!--BEGINING OF SCRIPT FOR CHAPTER 8 CASE PROJECT-->
+
+      <script>
+         var website = [];
+
+
+        function logWebsite(event) {
+           // This will get the caller element in Internet Explorer version 8
+           if (event === undefined) {
+               event = window.event;
+           }
+
+           var callerElement = $(this);
+           var websiteName = $(this).val();
+
+           // If checkbox has just been checked
+           if (callerElement.is(':checked')) {
+
+               // This will add checkbox value to the array
+               website.push(websiteName);
+
+               $("#choicesWebsites").append("<li>" + websiteName + "</li>");
+
+           } else {
+                var removed = false;
+                $("#choicesWebsites li").each(function(i) {
+                    if(!removed && $(this).html() == websiteName) {
+                        website.splice(i, 1);
+                        $(this).remove();
+                        removed = true;
+                    }
+                });
+            }
+        }
+
+
+        //This will allow the functions to be called whenever an event occurs
+        function createEventListeners() {
+            $('input[name="websites"]').on('change', logWebsite);
+        }
+
+
+        $(window).on('load', createEventListeners);        
+
+      </script>
+      <!--END OF SCRIPT FOR CHAPTER 8 CASE PROJECT-->
+
+
    </body>
 </html>
